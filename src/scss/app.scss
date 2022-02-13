@@ -1,0 +1,58 @@
+// Bootstrap
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+//Components
+@import './components/_header';
+@import './components/_tabs';
+
+body {
+  --bs-body-font-family: 'Inter', sans-serif;
+  --bs-body-font-size: 16px;
+  --bs-body-color: #939393;
+  --bs-body-line-height: 19px;
+}
+
+@mixin make-max-width-container(
+  $max-widths: $container-max-widths,
+  $breakpoints: $grid-breakpoints
+) {
+  @each $breakpoint, $max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $max-width;
+    }
+  }
+}
+// Container
+.container {
+  @include make-container(40px);
+  @include make-max-width-container();
+}
+
+.row {
+  @include make-row();
+  & > * {
+    @include make-col-ready();
+  }
+}
+
+%d-flex {
+  display: flex;
+}
+
+%justify-content-end {
+  justify-content: flex-end;
+}
+
+%align-items-center {
+  align-items: center;
+}
+
+%justify-content-between {
+  justify-content: space-between;
+}
